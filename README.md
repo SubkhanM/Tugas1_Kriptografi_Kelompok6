@@ -240,12 +240,3 @@ CRYPTOGRAPHY IS AN INDISPENSABLE TOOL FOR PROTECTING INFORMATION IN COMPUTING SY
 |----------------|-------------------------------------|---------------------------------------------------------------------|
 | 9              | Sangat cepat (beberapa detik)      | Lebih efisien dibandingkan brute force, karena hanya perlu satu kunci |
 |                |                                     | Brute force mencoba semua kemungkinan kunci (25 untuk Caesar)      |
-
-Berikut adalah format tabel yang mencakup **Kunci Enkripsi**, **Waktu Kriptanalisis yang Dibutuhkan**, dan **Perbandingan dengan Pendekatan Brute Force / Exhaustive Key Attack**. Tabel ini dirancang agar mudah disalin ke GitHub.
-
-```
-| Kunci Enkripsi | Waktu Kriptanalisis yang Dibutuhkan | Perbandingan dengan Pendekatan Brute Force / Exhaustive Key Attack |
-|----------------|-------------------------------------|---------------------------------------------------------------------|
-| 9              | Sangat cepat (beberapa detik)      | Lebih efisien dibandingkan brute force, karena hanya perlu satu kunci |
-|                |                                     | Brute force mencoba semua kemungkinan kunci (25 untuk Caesar)      |
-```
