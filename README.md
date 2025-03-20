@@ -97,12 +97,125 @@ data tersebut didapatkan dari https://en.wikipedia.org/wiki/Letter_frequency
 | I     | 0.06          |
 
 ![image](https://github.com/user-attachments/assets/9a3e4b50-4c67-417c-9b57-b13131bbbecc)
+# Penjelasan Kode
+Berikut adalah penjelasan mendetail mengenai kode Python yang Anda berikan, yang digunakan untuk mendekripsi ciphertext menggunakan metode cipher Caesar.
 
-lalu kita coba untuk substitusikan hasil dari frekuensi kemunculan huruf dalam bahasa inggris, dan juga frekuensi kemunculan huruf dalam chiperteks. kita bisa menggunakan kode python dibawah:
+
+# Tabel substitusi huruf
+| Frekuensi Huruf Cipherteks | Frekuensi Huruf Bahasa Inggris |
+|-------------------|-----------------|
+| N                 | E               |
+| C                 | T               |
+| R                 | A               |
+| B                 | O               |
+| X                 | I               |
+| A                 | N               |
+| J                 | S               |
+| W                 | H               |
+| L                 | R               |
+| Q                 | D               |
+| U                 | L               |
+| Y                 | U               |
+| H                 | C               |
+| M                 | M               |
+| D                 | F               |
+| V                 | Y               |
+| P                 | P               |
+| O                 | G               |
+| K                 | K               |
+| F                 | W               |
+| E                 | X               |
+| Z                 | Z               |
+| T                 | Q               |
+| G                 | V               |
+| I                 | T               |
+# Penjelasan Tabel
+lalu kita coba untuk substitusikan hasil dari frekuensi kemunculan huruf dalam bahasa inggris, dan juga frekuensi kemunculan huruf dalam chiperteks.
+
+
+# Metode Analisis pemecahan cipherteks
+Selanjutnya kita bisa mencoba untuk membuat program python otomatis agar memudahkan kita untuk mendekrip cipherteks, kita akan langsung mencoba dengan shift 25
 ![image](https://github.com/user-attachments/assets/0598d47d-e195-4b4a-a228-65a3fb0769f8)
+#### 1. Fungsi `caesar_decrypt`
 
+```python
+def caesar_decrypt(ciphertext, shift):
+    decrypted_text = ""
+    for char in ciphertext:
+        if char.isalpha():
+            shift_amount = shift % 26
+            if char.islower():
+                decrypted_text += chr((ord(char) - shift_amount - 97) % 26 + 97)
+            elif char.isupper():
+                decrypted_text += chr((ord(char) - shift_amount - 65) % 26 + 65)
+        else:
+            decrypted_text += char
+    return decrypted_text
+```
 
+- **Parameter**:
+  - `ciphertext`: Teks yang akan didekripsi.
+  - `shift`: Jumlah pergeseran yang digunakan dalam cipher Caesar.
 
+- **Variabel**:
+  - `decrypted_text`: String kosong yang akan diisi dengan hasil dekripsi.
+
+- **Proses**:
+  - **Looping**: Untuk setiap karakter (`char`) dalam `ciphertext`:
+    - **Cek Huruf**: Jika karakter adalah huruf (menggunakan `isalpha()`):
+      - **Hitung Pergeseran**: `shift_amount` dihitung sebagai `shift % 26` untuk memastikan tidak ada pergeseran yang lebih dari 25.
+      - **Huruf Kecil**: Jika karakter adalah huruf kecil (`islower()`), maka:
+        - `ord(char)` mengembalikan nilai ASCII dari karakter.
+        - Rumus `chr((ord(char) - shift_amount - 97) % 26 + 97)` digunakan untuk menghitung huruf yang didekripsi. 
+          - `- 97` mengubah huruf menjadi indeks (0 untuk 'a', 1 untuk 'b', dst.).
+          - `% 26` memastikan hasilnya tetap dalam rentang 0-25.
+          - `+ 97` mengubah kembali indeks menjadi karakter.
+      - **Huruf Besar**: Jika karakter adalah huruf besar (`isupper()`), prosesnya mirip, tetapi menggunakan `65` sebagai basis (0 untuk 'A', 1 untuk 'B', dst.).
+    - **Karakter Non-Huruf**: Jika karakter bukan huruf, karakter tersebut ditambahkan ke `decrypted_text` tanpa perubahan.
+  
+- **Return**: Mengembalikan `decrypted_text` yang berisi teks yang telah didekripsi.
+
+#### 2. Fungsi `brute_force_caesar`
+
+```python
+def brute_force_caesar(ciphertext):
+    for shift in range(1, 26):
+        decrypted_text = caesar_decrypt(ciphertext, shift)
+        print(f"Shift {shift}: {decrypted_text}")
+```
+
+- **Parameter**:
+  - `ciphertext`: Teks yang akan didekripsi.
+
+- **Proses**:
+  - **Looping**: Untuk setiap nilai `shift` dari 1 hingga 25:
+    - Memanggil fungsi `caesar_decrypt` dengan `ciphertext` dan `shift` saat ini.
+    - Mencetak hasil dekripsi dengan format `Shift {shift}: {decrypted_text}`.
+
+#### 3. Ciphertext yang Akan Didekripsi
+
+```python
+ciphertext = """LAHYCXPAJYQHRBJWRWMRBYNWBJKUNCXXUOXAYAXCNLCRWPRWOXAVJCRXWRWLXV
+YDCRWPBHBCNVBRCRBDBNMNENAHFQNANKHKRUURXWBXOYNXYUNFXAUMFRMNXWJM
+...
+"""
+```
+
+- Ini adalah string panjang yang berisi ciphertext yang akan didekripsi.
+
+#### 4. Menjalankan Brute Force
+
+```python
+brute_force_caesar(ciphertext)
+```
+
+- Memanggil fungsi `brute_force_caesar` untuk mencoba semua kemungkinan pergeseran dari 1 hingga 25 dan mencetak hasilnya.
+
+### Kesimpulan
+
+Kode ini secara efektif mendekripsi teks yang dienkripsi menggunakan cipher Caesar dengan mencoba semua kemungkinan pergeseran. Dengan menggunakan fungsi `caesar_decrypt`, kode ini dapat mengembalikan teks asli dari ciphertext yang diberikan. Hasil dari setiap pergeseran dicetak, sehingga Anda dapat dengan mudah menemukan teks yang masuk akal. 
+
+# Mempersempit Kemungkinan
 hasil ditemukan pada pergeseran (shift) 9, menggunakan kode Python yang dapat digunakan untuk mendekripsi ciphertext dengan shift 9:
 ![A](https://github.com/user-attachments/assets/9277e5d7-eeaf-4534-b2fa-d2d90c787608)
 
