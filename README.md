@@ -98,6 +98,10 @@ data tersebut didapatkan dari https://en.wikipedia.org/wiki/Letter_frequency
 
 ![image](https://github.com/user-attachments/assets/9a3e4b50-4c67-417c-9b57-b13131bbbecc)
 
+# lalu kita coba untuk substitusikan hasil dari frekuensi kemunculan huruf dalam bahasa inggris, dan juga frekuensi kemunculan huruf dalam chiperteks. kita bisa menggunakan kode python dibawah:
+![image](https://github.com/user-attachments/assets/0598d47d-e195-4b4a-a228-65a3fb0769f8)
+
+
 
 # hasil ditemukan pada pergeseran (shift) 9, menggunakan kode Python yang dapat digunakan untuk mendekripsi ciphertext dengan shift 9:
 ![A](https://github.com/user-attachments/assets/9277e5d7-eeaf-4534-b2fa-d2d90c787608)
